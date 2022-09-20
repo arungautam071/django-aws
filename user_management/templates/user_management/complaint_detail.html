@@ -1,0 +1,40 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="card mb-3">
+  <h3 class="card-header"><img class="rounded-circle article-img" src="{{ object.user_complain.profile.image.url }}">{{ object.user_complain }}</h3>
+  
+  <div class="card-body">
+      <div class="article-metadata">
+        {% if object.user_complain == user %}
+          <div>
+            <span class="badge rounded-pill bg-warning "><a href="{% url 'Complaint-update' object.id %}">Update</a></span>
+            <span class="badge rounded-pill bg-danger"><a href="{% url 'Complaint-delete' object.id %}">Delete</a></span>
+          </div>
+        {% endif %}
+        <br>
+          <span class="badge rounded-pill bg-dark">Room Number  {{ object.user_complain.profile.user_room_number }}</span>
+          <span class="badge rounded-pill bg-primary">{{  object.complain_date|date:"F d, Y" }}</span>
+          
+          
+        </div>
+        <span class="badge  bg-info">Title :</span>
+        <h5 class="card-title">{{ object.complain_title }}</h5>
+  
+  </div>
+  
+    <img class="rounded mx-auto d-block" id="imghome"  src="{{ object.image.url }}">
+  <div class="card-body">
+    <span class="badge  bg-info">Description :</span>
+    <p class="card-text"> {{ object.complain_description }}</p>
+  </div>
+</div>
+
+  
+{% endblock content %}
+
+
+
+

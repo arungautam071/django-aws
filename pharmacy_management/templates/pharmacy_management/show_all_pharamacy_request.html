@@ -1,0 +1,47 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+        <div class="container">
+            <h2 class="text-center"><u>All Pharmacy Request</u></h2><br>			
+            <table class="table table-light">
+                <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>User Name</th>
+                    <th>Request Time</th>
+                    <th>Status</th>
+                {% if user.is_superuser %} 
+                    <th>Detail</th>
+                {% endif %}    
+                </tr>
+                </thead>
+                <tbody>
+                <!-- jinja2 Technique -->
+                
+                {% for medicine in pharamacy_request %}
+                        <tr>
+                            <td>{{ medicine.user_name.profile.user_room_number }}</td>
+                            <td><img class="rounded-circle article-img" src="{{ medicine.user_name.profile.image.url }}">{{ medicine.user_name }}</td>
+                            <td>{{  medicine.request_time }}</td>
+                            <td>{{ medicine.status }}</td>
+                            {% if user.is_superuser %} 
+                            <td><a href="{% url 'request-detail' medicine.id %}" class="badge rounded-pill bg-info">Detail</a></td>
+                            {% endif %}
+                        </tr>
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+       
+        
+
+    
+{% endblock content %}
+
+
+
+
+

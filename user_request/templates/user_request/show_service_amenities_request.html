@@ -1,0 +1,21 @@
+{% extends "user_management/base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+    {% for request in service_request %}
+    <div class="card bg-light mb-3 m-auto" style="max-width: 20rem;">
+      <div class="card-header"><img class="rounded-circle article-img" src="{{ request.user_request.profile.image.url }}">{{ request.user_request }}
+      <span class="badge rounded-pill bg-dark">Room Number  {{   request.user_request.profile.user_room_number }}</span>
+      </div>
+      <div class="card-body">
+        
+        <br>
+        <h2 class="badge  bg-primary">Request Title :</h2>
+        <h5 class="card-title">  {{ request.service_title }}</h5>
+        <span class="badge  bg-success">Request Type : </h6>{{ request.service_type_request }}</span>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock content %}    

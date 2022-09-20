@@ -1,0 +1,36 @@
+{% extends "user_management/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<br>
+<br>
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">medicine request</legend>
+                <span class="badge bg-primary">All Branded Medicines & Cosmetic Products Available</span>
+                
+                <span class="badge bg-primary">15% discount on all medicines*</span>
+                <br>
+                <br>
+                <span class="badge bg-primary">Get Your Order Update On Whatsapp</span>
+            
+                 <small><img src="https://static.whatsapp.net/rsrc.php/yz/r/lOol7j-zq4u.svg" alt=""></small><span class="badge bg-success"> +91-7838000043</span>
+                <br><br>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info active" type="submit">Submt Your Request</button>
+    
+            </div>
+    
+        </form>
+        
+    </div>
+    <script>
+        $(function () {
+          $("#datepicker").datepicker();
+        });
+      </script>
+{% endblock content %}    

@@ -1,0 +1,47 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="card mb-3">
+   <div class="card-body">
+      <div class="article-metadata">
+         <button type="button" class="btn btn-outline-primary btn-sm"><a href="{{ room_availability.id }}">{{ room_availability.id }}</a></button>
+         <button type="button" class="btn btn-outline-primary btn-sm"><a href="{% url 'room-list' %}">BACK</a></button>
+         <button type="button" class="btn btn-outline-primary btn-sm"><a href="{% url 'add_user_room' %}">Add User</a></button>
+            <table class="table table-hover">
+               <thead>
+                 <tr>
+                   <th scope="col">Room ID</th>
+                   <th scope="col">Room Number {{ room_availability.room_number }}</th>
+                   <th scope="col">Resident Name</th>
+                   <th scope="col">Pay Status</th>
+                   <th scope="col">Last Pay Date</th>
+                   <th scope="col">Update User</th>
+                   <th scope="col">Delete</th>                   
+                 </tr>
+               </thead>
+               <tbody>
+         {% for user in user_in_room %}
+            {% if room_availability.room_number == user.room_user.room_number %}
+               <tr class="table-primary">
+                   <th scope="row">{{ room_availability.id }}</th>  
+                   <th scope="row">{{ room_availability.room_number }}</th>       
+                   <td><img class="rounded-circle article-img" src="{{ user.room_user_name.profile.image.url }}"><a href="{% url 'user-profile-detail' user.id %}" class="badge rounded-pill bg-light">{{ user.room_user_name }}</a></td>
+                   <th scope="row">{{ user.room_user_name.profile.current_month_pay_status }}</th>
+                   <th scope="row">{{ user.room_user_name.profile.last_pay_date|date:"b d, y" }}</th>
+                   <td><a href="{% url 'user-room-update' user.id %}" class="badge rounded-pill bg-info">UPDATE</a></td>
+                   <td><a href="{% url 'entry-delete' user.id %}" class="badge rounded-pill bg-danger">DELETE</a></td>                 
+               </tr>
+            {% endif %}                  
+         {% endfor %}
+               </tbody>
+             </table>
+      </div>
+   </div>
+</div>
+{% endblock content %}
+
+
+
+

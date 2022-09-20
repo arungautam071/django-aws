@@ -1,0 +1,37 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+    <h2 class="text-center "><u>Update Your Request</u></h2><br>
+    <div class="card bg-light mb-3 m-auto" style="max-width: 20rem;">
+        <div class="card-header"><img class="rounded-circle article-img"
+                src="{{ object.user_request.profile.image.url }}">{{ object.user_request }}
+            <span class="badge rounded-pill bg-dark">Room Number {{ object.user_request.profile.user_room_number }}</span>
+            <span class="badge rounded-pill bg-dark">Contact No. {{ object.mobile_number }}</span>
+            <br>
+            <br>
+            {% if object.user_request == user %}
+            <div>
+                <span class="badge rounded-pill bg-warning "><a
+                        href="{% url 'washing-update' object.id %}">Update</a></span>
+                <span class="badge rounded-pill bg-danger"><a
+                        href="{% url 'washing-delete' object.id %}">Delete</a></span>
+            </div>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <span class="badge rounded-pill bg-success">Put In Time {{ object.put_in_time }}</span>
+            <br>
+            <br>
+            <span class="badge rounded-pill bg-warning">Take Out Time {{ object.take_out_time }}</span>
+            <h4 class="card-title">
+                <h6 style="color:red;">Status</h6>{{ object.status }}
+            </h4>
+            <p class="card-text">
+            <h6 style="color:#084f8d;">Status Type</h6>{{ object.status }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

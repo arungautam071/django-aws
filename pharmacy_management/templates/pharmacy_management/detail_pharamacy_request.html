@@ -1,0 +1,83 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="card mb-3">
+   <div class="card-body">
+      <div class="article-metadata">
+            <table class="table table-hover">
+               <thead>
+                 <tr>
+                   <th scope="col">Room Number </th>
+                   <th scope="col">user Name</th>
+                   <th scope="col">Update satus</th>
+                   <th scope="col">Delete-request</th>
+                   
+                 </tr>
+               </thead>
+               <tbody>
+       
+            
+               <tr class="table-primary">
+                  
+                   <td>{{ pharmacy.user_name.profile.user_room_number }}</a></td> 
+                   <td><img class="rounded-circle article-img" src="{{ pharmacy.user_name.profile.image.url }}"><a href="{% url 'request-detail' user.id %}" class="badge rounded-pill bg-light">{{ pharmacy.user_name }}</a></td>
+                   <td><a href="{% url 'user_status_update' pharmacy.id %}" class="badge rounded-pill bg-info">Update-Status</a></td>
+                   <td><a href="{% url 'request-delete' pharmacy.id %}" class="badge rounded-pill bg-danger">Delete-Request</a></td>
+                   
+               </tr>
+       
+               </tbody>
+             </table>
+                       
+
+               <!-- <span class="badge rounded-pill bg-dark">Room number {{ room_availability.room_number }}  room user ( {{ user.room_user_name }} )  {{ user.room_user.room_number }}</span> -->
+
+           
+
+          
+            
+      
+  
+    
+      </div>
+   </div>
+</div>
+<div class="toast show mx-auto" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="me-auto">Prescription</strong>
+    <small>{{  pharmacy.request_time }}</small>
+    <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="toast-body">
+     <h3>{{  pharmacy.prescription_text }}</h3>
+     
+  </div>
+</div>
+<br>
+<br>
+<div class="toast show mx-auto" role="alert" aria-live="assertive" aria-atomic="true">
+   <div class="toast-header">
+     <strong class="me-auto">Prescription</strong>
+     <small>{{  pharmacy.request_time }}</small>
+     <button type="button" class="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+       <span aria-hidden="true"></span>
+     </button>
+   </div>
+   <div class="toast-body">
+      <span class="badge rounded-pill bg-primary"><a href="{{ pharmacy.prescription.url }}">open full image</a></span>
+      <h3></h3>
+      <img class="rounded mx-auto d-block" id="imghome"  src="{{ pharmacy.prescription.url }}">
+   </div>
+ </div>
+
+  
+{% endblock content %}
+
+
+
+
+

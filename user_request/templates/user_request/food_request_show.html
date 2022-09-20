@@ -1,0 +1,20 @@
+{% extends "user_management/base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+    {% for request in Food_request %}
+    <div class="card bg-light mb-3 m-auto" style="max-width: 20rem;">
+      <div class="card-header"><img class="rounded-circle article-img" src="{{ request.user_request.profile.image.url }}">{{ request.user_request }}
+      <span class="badge rounded-pill bg-dark">Room Number  {{   request.user_request.profile.user_room_number }}</span>
+      </div>
+      <div class="card-body">
+        <span class="badge bg-primary">Request Type</span>
+        <br>
+        <h5 class="card-title">{{ request.food_type_request }}</h5>
+        <span class="badge  bg-success">Request Date {{ request.request_date }}</span>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock content %}    

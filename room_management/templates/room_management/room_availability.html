@@ -1,0 +1,169 @@
+{% extends "user_management/base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+        
+            <div class="container">
+                <h2 class="text-center"><u>First Floor Room's</u></h2><br>			
+                <table class="table table-primary">
+                    <thead>
+                    <tr>
+                        <th>Room ID</th>
+                        <th>Room Number</th>
+                        <th>Room Type</th>
+                        <th>Room For</th>
+                        <th>Check-In-Date</th>
+                        <th>Room Status</th>
+                        <th>User's in Room</th>
+                        <th>Update Entry</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- jinja2 Technique -->
+                    
+                    {% for room_f in room_availability %}
+                        {% if room_f.room_floor == 'First-floor' %}
+                            <tr>
+                                <td >{{ room_f.id }}</td>
+                                <td >{{ room_f.room_number }}</td>
+                                <td>{{ room_f.room_type }}</td>
+                                <td>{{ room_f.room_for }}</td>
+                                <td>{{ room_f.check_in_date }}</td>
+                                <td>{{ room_f.room_status }}</td>
+                                <td><a href="{% url 'room-detail' room_f.id %}" class="badge rounded-pill bg-info">User's Info</a></td>
+                                <td><a href="{% url 'room-update' room_f.id %}" class="badge rounded-pill bg-warning">Update</a></td>
+                            </tr>
+                        {% endif %}    
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+            </div>
+               
+   
+
+ 
+        
+        <div class="container">
+            <h2 class="text-center"><u>Second Floor Room's</u></h2><br>			
+            <table class="table table-warning">
+                <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Room Number</th>
+                    <th>Room Type</th>
+                    <th>Room For</th>
+                    <th>Check-In-Date</th>
+                    <th>Room Status</th>
+                    <th>User's in Room</th>
+                    <th>Update Entry</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- jinja2 Technique -->
+                
+                {% for room_s in room_availability %}
+                    {% if room_s.room_floor == 'Second-floor' %}
+                        <tr>
+                            <td >{{ room_s.id }}</td>
+                            <td>{{ room_s.room_number }}</td>
+                            <td>{{ room_s.room_type }}</td>
+                            <td>{{  room_s.room_for }}</td>
+                            <td>{{ room_s.check_in_date }}</td>
+                            <td>{{ room_s.room_status }}</td>
+                            <td><a href="{% url 'room-detail' room_s.id %}" class="badge rounded-pill bg-info">User's Info</a></td>
+                            <td><a href="{% url 'room-update' room_s.id %}" class="badge rounded-pill bg-warning">Update</a></td>
+                        </tr>
+                    {% endif %}    
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>    
+
+        
+        <div class="container">
+            <h2 class="text-center"><u>Third Floor Room's</u></h2><br>			
+            <table class="table table-light">
+                <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Room Number</th>
+                    <th>Room Type</th>
+                    <th>Room For</th>
+                    <th>Check-In-Date</th>
+                    <th>Room Status</th>
+                    <th>User's in Room</th>
+                    <th>Update Entry</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- jinja2 Technique -->
+                
+                {% for room_t in room_availability %}
+                    {% if room_t.room_floor == 'Third-floor' %}
+                        <tr>
+                            <td >{{ room_t.id }}</td>
+                            <td>{{ room_t.room_number }}</td>
+                            <td>{{ room_t.room_type }}</td>
+                            <td>{{  room_t.room_for }}</td>
+                            <td>{{ room_t.check_in_date }}</td>
+                            <td>{{ room_t.room_status }}</td>
+                            <td><a href="{% url 'room-detail' room_t.id %}" class="badge rounded-pill bg-info">User's Info</a></td>
+                            <td><a href="{% url 'room-update' room_t.id %}" class="badge rounded-pill bg-warning">Update</a></td>
+                        </tr>
+                    {% endif %}    
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <h2 class="text-center"><u>Forth Floor Room's</u></h2><br>			
+            <table class="table table-warning">
+                <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Room Number</th>
+                    <th>Room Type</th>
+                    <th>Room For</th>
+                    <th>Check-In-Date</th>
+                    <th>Room Status</th>
+                    <th>User's in Room</th>
+                    <th>Update Entry</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- jinja2 Technique -->
+                
+                {% for room_forth in room_availability %}
+                    {% if room_forth.room_floor == 'Forth-floor' %}
+                        <tr>
+                            <td >{{ room_forth.id }}</td>
+                            <td>{{ room_forth.room_number }}</td>
+                            <td>{{ room_forth.room_type }}</td>
+                            <td>{{  room_forth.room_for }}</td>
+                            <td>{{ room_forth.check_in_date }}</td>
+                            <td>{{ room_forth.room_status }}</td>
+                            <td><a href="{% url 'room-detail' room_forth.id %}" class="badge rounded-pill bg-info">User's Info</a></td>
+                            <td><a href="{% url 'room-update' room_forth.id %}" class="badge rounded-pill bg-warning">Update</a></td>
+                        </tr>
+                    {% endif %}    
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div> 
+       
+        
+
+    
+{% endblock content %}
+
+
+
+
+

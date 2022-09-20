@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="{% static 'user_management/favicon.ico' %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'user_management/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_management/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_management/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'user_management/pricing.css' %}">
+
+     
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Fengyuan Chen's Datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+    
+    
+
+    {% if title %}
+        <title>Shiv Shiva - {{ title }}</title>
+    {% else %}
+        <title>Shiv Shiva</title>
+    {% endif %}
+    
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index-page' %}">Shiv Shiva Residency </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor03">
+        
+            <ul class="navbar-nav me-auto">
+            
+                {% if user.is_authenticated %}  
+              
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'profile' %}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'complain-register' %}">Register-Complain</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link active" href="">Order Medicine</a>
+              </li> -->
+              
+           
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Request</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item active" href="{% url 'food-request' %}">Food-Request</a>
+                  <a class="dropdown-item active" href="{% url 'service_amenities_request' %}">Service-Amenities-Request</a>
+                  <a class="dropdown-item active" href="{% url 'washing_request' %}">Washing-Request</a>
+                  
+              </li>
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Show Request</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item active" href="{% url 'food_request-show' %}">Food</a>
+                  <a class="dropdown-item active" href="{% url 'washing_request_show' %}">Washing Machine</a> 
+                  <a class="dropdown-item active" href="{% url 'pharamacy_request-list' %}">Pharamacy Request</a>
+                     
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'request_pharmacy-create' %}" class="badge rounded-pill bg-info">Order Medicine</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'Logout' %}">Log-Out</a>
+              </li>
+            
+          {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'Login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'room-price' %}">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'contact-form' %}">Contact Us</a>
+              </li>
+          {% endif %}
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a href="{% url 'home-page' %}" class="badge rounded-pill bg-info">Complain's</a>
+          </li> 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle badge rounded-pill bg-success" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Management</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item active" href="{% url 'room-availability' %}">Create Room-Availability</a>
+              <a class="dropdown-item active" href="{% url 'room-list' %}">Room-Availability-check</a>
+              <a class="dropdown-item active" href="{% url 'service_request_list' %}">Service Amenities</a>
+              <a class="dropdown-item active" href="{% url 'pharamacy_request-list' %}">Pharamacy Request</a>
+
+
+          </li>
+          
+          {% endif %}
+        </ul>
+           
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

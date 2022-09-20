@@ -1,0 +1,44 @@
+{% extends "user_management/base.html" %}
+{% block content %}
+<br>
+<br>
+<br>
+        <div class="container-fluid">
+            <h2 class="text-center"><u>All Profile Request</u></h2><br>			
+            <table class="table table-light">
+                <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>User Name</th>
+                    <th>Monthly Rent</th>
+                    <th>Security</th>
+                    <th>Date Of Joining</th>
+                    <th>Phone Number</th>
+                    <th>Detail</th>
+                      
+                </tr>
+                </thead>
+                <tbody>
+                <!-- jinja2 Technique -->
+                
+                {% for user in user_profile %}
+                        <tr>
+                            <td>{{ user.user_room_number }}</td>
+                            <td>{{ user.user }}</td>
+                            <td>{{  user.monthly_rent }}</td>
+                            <td>{{ user.security_amount }}</td>
+                            <td>{{ user.date_of_joining|date:"F d, Y"  }}</td>
+                            <td>{{ user.mobile_number }}</td>
+                            <td><a href="{% url 'profile-detail' unique_user.id %}" class="badge rounded-pill bg-danger">detail</a></td>
+                        </tr>
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>    
+{% endblock content %}
+
+
+
+
+

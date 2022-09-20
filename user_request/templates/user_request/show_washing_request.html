@@ -1,0 +1,73 @@
+{% extends "user_management/base.html" %}
+
+
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<h2 class="text-center "><u>MACHINE-1</u></h2><br>
+{% for laundry in washing_machine %}
+{% if laundry.machine_number == 'MACHINE-1' %}
+
+<div class="container">
+  <div class="card bg-light mb-3 m-auto" style="max-width: 20rem;">
+    <div class="card-header"><img class="rounded-circle article-img"
+        src="{{ laundry.user_request.profile.image.url }}">{{ laundry.user_request }}
+      <span class="badge rounded-pill bg-dark">Room Number {{ laundry.user_request.profile.user_room_number }}</span>
+      <span class="badge rounded-pill bg-dark">Contact No. {{ laundry.mobile_number }}</span>
+    </div>
+    <div class="card-body">
+      <span class="badge rounded-pill bg-success">Put In Time {{ laundry.put_in_time }}</span>
+      <br>
+      <br>
+      <span class="badge rounded-pill bg-warning">Take Out Time {{ laundry.take_out_time }}</span>
+
+      <br>
+      <br>
+      {% if laundry.user_request == user %}
+      <span class="badge rounded-pill bg-warning"><a class="article-title"
+          href="{% url 'washing-detail' laundry.id %}">Manage Complain</a></span>
+      {% endif %}
+      <h4 class="card-title">
+        <h6 style="color:red;">Status</h6>{{ laundry.status }}
+      </h4>
+  </div>
+  <br>
+  </div>  
+</div>
+{% endif %}
+{% endfor %}
+
+<h2 class="text-center "><u>MACHINE-2</u></h2><br>
+{% for laundry in washing_machine %}
+{% if laundry.machine_number == 'MACHINE-2' %}
+  <div class="container">
+    <div class="card bg-light mb-3 m-auto" style="max-width: 20rem;">
+      <div class="card-header"><img class="rounded-circle article-img"
+          src="{{ laundry.user_request.profile.image.url }}">{{ laundry.user_request }}
+        <span class="badge rounded-pill bg-dark">Room Number {{ laundry.user_request.profile.user_room_number }}</span>
+        <span class="badge rounded-pill bg-dark">Contact No. {{ laundry.mobile_number }}</span>
+      </div>
+      <div class="card-body">
+        <span class="badge rounded-pill bg-success">Put In Time {{ laundry.put_in_time }}</span>
+        <br>
+        <br>
+        <span class="badge rounded-pill bg-warning">Take Out Time {{ laundry.take_out_time }}</span>
+        <br>
+        <br>
+        {% if laundry.user_request == user %}
+        <span class="badge rounded-pill bg-warning"><a class="article-title"
+            href="{% url 'washing-detail' laundry.id %}">Manage Complain</a></span>
+        {% endif %}
+        <h4 class="card-title">
+          <h6 style="color:red;">Status</h6>{{ laundry.status }}
+        </h4>
+    </div>
+</div>  
+{% endif %}
+{% endfor %}
+
+
+{% endblock content %}
